@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <ROLE ID="1" NAME="Admin"/>
+    <ROLE ID="2" NAME="User"/>
+    <ROLE ID="3" NAME="Test"/>
+    <USER ID="1" LOGIN="john_doe" PASSWORD="passw" EMAIL="j_doe@gmail.com" FIRSTNAME ="John" LASTNAME="Doe" BIRTHDAY="1980-11-21" ROLE_ID="1"/>
+    <USER ID="2" LOGIN="jane_doe" PASSWORD="password1" EMAIL="jane_d@gmail.com" FIRSTNAME ="Jane" LASTNAME="Doe" BIRTHDAY="1977-11-11" ROLE_ID="2"/>
+</dataset>

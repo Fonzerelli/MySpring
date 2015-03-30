@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <USER ID="1" LOGIN="john_doe" PASSWORD="passw" EMAIL="j_doe@gmail.com" FIRSTNAME ="John" LASTNAME="Doe" BIRTHDAY="1980-11-21" ROLE_ID="1"/>
+</dataset>
