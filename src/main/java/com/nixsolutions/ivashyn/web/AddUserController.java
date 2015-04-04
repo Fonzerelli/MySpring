@@ -4,11 +4,12 @@ import com.nixsolutions.ivashyn.db.dao.RoleDao;
 import com.nixsolutions.ivashyn.db.dao.UserDao;
 import com.nixsolutions.ivashyn.db.entity.User;
 import com.nixsolutions.ivashyn.db.exception.DaoException;
+import com.nixsolutions.ivashyn.util.HashUtil;
 import com.nixsolutions.ivashyn.util.UserHelper;
 import com.nixsolutions.ivashyn.web.form.UserForm;
 import com.nixsolutions.ivashyn.web.form.UserFormValidator;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -27,7 +28,7 @@ import java.text.ParseException;
 @Controller
 public class AddUserController {
 
-    private static final Log LOGGER = LogFactory.getLog(AddUserController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AddUserController.class);
 
     @Autowired
     private UserHelper userHelper;
@@ -61,7 +62,8 @@ public class AddUserController {
         }
         User user = new User();
         user.setLogin(userForm.getLogin());
-        user.setPassword(userForm.getPassword());
+
+        user.setPassword(HashUtil.getEncryptedText(userForm.getPassword()));
         user.setEmail(userForm.getEmail());
         user.setFirstName(userForm.getFirstName());
         user.setLastName(userForm.getLastName());

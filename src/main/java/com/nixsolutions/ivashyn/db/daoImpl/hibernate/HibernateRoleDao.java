@@ -3,9 +3,9 @@ package com.nixsolutions.ivashyn.db.daoImpl.hibernate;
 import com.nixsolutions.ivashyn.db.dao.RoleDao;
 import com.nixsolutions.ivashyn.db.entity.Role;
 import com.nixsolutions.ivashyn.db.exception.DaoException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +20,7 @@ import java.util.List;
 @Transactional
 public class HibernateRoleDao extends HibernateGenericDaoImpl<Role> implements RoleDao {
 
-    private static final Log LOGGER = LogFactory.getLog(HibernateRoleDao.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HibernateRoleDao.class);
 
     public HibernateRoleDao() {
     }

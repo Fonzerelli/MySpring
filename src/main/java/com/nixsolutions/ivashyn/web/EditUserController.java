@@ -4,11 +4,12 @@ import com.nixsolutions.ivashyn.db.dao.RoleDao;
 import com.nixsolutions.ivashyn.db.dao.UserDao;
 import com.nixsolutions.ivashyn.db.entity.User;
 import com.nixsolutions.ivashyn.db.exception.DaoException;
+import com.nixsolutions.ivashyn.util.HashUtil;
 import com.nixsolutions.ivashyn.util.UserHelper;
 import com.nixsolutions.ivashyn.web.form.UserForm;
 import com.nixsolutions.ivashyn.web.form.UserFormValidator;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -28,7 +29,7 @@ import java.text.ParseException;
 @Controller
 public class EditUserController {
 
-    private static final Log LOGGER = LogFactory.getLog(EditUserController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EditUserController.class);
 
     @Autowired
     private UserDao userDao;
@@ -43,7 +44,7 @@ public class EditUserController {
     private RoleDao roleDao;
 
     @RequestMapping(value = "/editUser", method = RequestMethod.GET)
-    protected ModelAndView editUser(@RequestParam(value = "id") String id) {
+        protected ModelAndView editUser(@RequestParam(value = "id") String id) {
         User user = null;
         try {
             user = userDao.findById(Long.parseLong(id));
@@ -77,7 +78,7 @@ public class EditUserController {
             LOGGER.error("Can't find user by id", e);
             return modelAndView;
         }
-        user.setPassword(userForm.getPassword());
+        user.setPassword(HashUtil.getEncryptedText(userForm.getPassword()));
         user.setEmail(userForm.getEmail());
         user.setFirstName(userForm.getFirstName());
         user.setLastName(userForm.getLastName());

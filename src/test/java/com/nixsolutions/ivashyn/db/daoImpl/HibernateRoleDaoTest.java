@@ -7,11 +7,11 @@ import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import com.nixsolutions.ivashyn.db.dao.RoleDao;
 import com.nixsolutions.ivashyn.db.entity.Role;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -34,8 +34,8 @@ import static org.junit.Assert.assertTrue;
 @TransactionConfiguration(transactionManager="transactionManager")
 public class HibernateRoleDaoTest {
 
-    private static final Log LOGGER = LogFactory.getLog(HibernateRoleDaoTest
-            .class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HibernateRoleDaoTest.class);
+
     public static final String ROLE_TABLE_NAME = "ROLE";
 
     @Autowired

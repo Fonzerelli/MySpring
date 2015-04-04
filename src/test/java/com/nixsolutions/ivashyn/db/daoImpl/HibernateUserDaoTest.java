@@ -8,11 +8,11 @@ import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import com.nixsolutions.ivashyn.db.dao.RoleDao;
 import com.nixsolutions.ivashyn.db.dao.UserDao;
 import com.nixsolutions.ivashyn.db.entity.User;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -36,7 +36,7 @@ import static org.junit.Assert.assertNotNull;
 @TransactionConfiguration(transactionManager="transactionManager")
 public class HibernateUserDaoTest {
 
-    private static final Log LOGGER = LogFactory.getLog(HibernateUserDaoTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HibernateUserDaoTest.class);
     public static final String USER_TABLE_NAME = "USER";
 
     @Autowired

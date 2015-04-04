@@ -3,9 +3,9 @@ package com.nixsolutions.ivashyn.db.daoImpl.hibernate;
 import com.nixsolutions.ivashyn.db.dao.UserDao;
 import com.nixsolutions.ivashyn.db.entity.User;
 import com.nixsolutions.ivashyn.db.exception.DaoException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class HibernateUserDao extends HibernateGenericDaoImpl<User> implements UserDao {
 
-    private static final Log LOGGER = LogFactory.getLog(HibernateUserDao.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HibernateUserDao.class);
 
     @Override
     public User findByLogin(String login) throws DaoException {

@@ -1,8 +1,6 @@
 package com.nixsolutions.ivashyn.web;
 
 import com.nixsolutions.ivashyn.util.UserHelper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,8 +16,6 @@ import java.io.IOException;
  */
 @Controller
 public class EditAllUsersController {
-
-    private static final Log LOGGER = LogFactory.getLog(EditAllUsersController.class);
 
     @Autowired
     private UserHelper userHelper;

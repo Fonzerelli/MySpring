@@ -1,0 +1,12 @@
+
+2)messages.properties
+3)rename packages
+   NoSQL (Mongo)
+5)JMS
+6)refactoring (service layer)
+7)css
+
+
+choose bugtracking system (kanbanize or redmine or smth else) ~15min 
+make a plan ~15min
+

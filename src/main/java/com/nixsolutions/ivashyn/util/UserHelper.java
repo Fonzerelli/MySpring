@@ -5,8 +5,8 @@ import com.nixsolutions.ivashyn.db.dao.UserDao;
 import com.nixsolutions.ivashyn.db.entity.Role;
 import com.nixsolutions.ivashyn.db.entity.User;
 import com.nixsolutions.ivashyn.db.exception.DaoException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,8 @@ import java.util.List;
 @Service
 public class UserHelper {
 
-    private static final Log LOGGER = LogFactory.getLog(UserHelper.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserHelper.class);
+
     public static final SimpleDateFormat DATE_FORMATTER = new
             SimpleDateFormat("YYYY-MM-dd");
     @Autowired
