@@ -46,6 +46,20 @@
         <property name="password" value="${hibernate.connection.password}"/>
     </bean>
 
+    <!--    MongoDB -->
+
+    <bean id="mongo" class="com.mongodb.Mongo" destroy-method="close">
+        <constructor-arg value="localhost"/>
+        <constructor-arg value="27017"/>
+    </bean>
+
+    <bean id="morphia" class="com.google.code.morphia.Morphia"/>
+
+    <bean id="datastore" factory-bean="morphia" factory-method="createDatastore">
+        <constructor-arg ref="mongo"/>
+        <constructor-arg value="my_spring"/>
+    </bean>
+
     <!--<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">-->
         <!--<property name="locations">-->
             <!--<list>-->

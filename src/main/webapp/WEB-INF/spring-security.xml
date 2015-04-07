@@ -13,6 +13,7 @@
         <intercept-url pattern="/switch" access="hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/getUserHome" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/editAllUsers" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/getLoginAuditPage" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/deleteUser" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/getAddUserPage" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/addUser" access="hasRole('ROLE_ADMIN')"/>
@@ -22,28 +23,36 @@
         <form-login
                 login-page="/signIn"
                 authentication-failure-url="/signIn?error=true"
+                authentication-success-handler-ref="authenticationHandler"
                 default-target-url="/switch"/>
         <logout
                 invalidate-session="true"
-                logout-success-url="/signIn"
+                success-handler-ref="logoutHandler"
                 logout-url="/logout"/>
 
-        <custom-filter ref="captchaCaptureFilter" before="FORM_LOGIN_FILTER"/>
-        <custom-filter ref="captchaVerifierFilter" after="FORM_LOGIN_FILTER"/>
+        <!--<custom-filter ref="captchaCaptureFilter" before="FORM_LOGIN_FILTER"/>-->
+        <!--<custom-filter ref="captchaVerifierFilter" after="FORM_LOGIN_FILTER"/>-->
     </http>
 
+    <beans:bean class="com.nixsolutions.ivashyn.web.security.AuthenticationHandler" id="authenticationHandler">
+        <beans:property name="successURL" value="./switch"/>
+    </beans:bean>
+
+    <beans:bean class="com.nixsolutions.ivashyn.web.security.LogoutHandler" id="logoutHandler">
+        <beans:property name="successURL" value="./signIn"/>
+    </beans:bean>
     <!-- For capturing CAPTCHA fields -->
-    <beans:bean id="captchaCaptureFilter" class="com.nixsolutions.ivashyn.web.filter.CaptchaCaptureFilter"/>
+    <!--<beans:bean id="captchaCaptureFilter" class="com.nixsolutions.ivashyn.web.filter.CaptchaCaptureFilter"/>-->
 
     <!-- For verifying CAPTCHA fields -->
     <!-- Private key is assigned by the reCATPCHA service -->
-    <beans:bean id="captchaVerifierFilter" class="com.nixsolutions.ivashyn.web.filter.CaptchaVerifierFilter">
-        <beans:property name="useProxy" value="false"/>
-        <beans:property name="proxyPort" value=""/>
-        <beans:property name="proxyHost" value=""/>
-        <beans:property name="privateKey" value="${private.key}"/>
-        <beans:property name="failureUrl" value="/signIn?error=true"/>
-    </beans:bean>
+    <!--<beans:bean id="captchaVerifierFilter" class="com.nixsolutions.ivashyn.web.filter.CaptchaVerifierFilter">-->
+        <!--<beans:property name="useProxy" value="false"/>-->
+        <!--<beans:property name="proxyPort" value=""/>-->
+        <!--<beans:property name="proxyHost" value=""/>-->
+        <!--<beans:property name="privateKey" value="${private.key}"/>-->
+        <!--<beans:property name="failureUrl" value="/signIn?error=true"/>-->
+    <!--</beans:bean>-->
 
     <!--<authentication-manager>-->
         <!--<authentication-provider user-service-ref="customUserDetailsService"/>-->

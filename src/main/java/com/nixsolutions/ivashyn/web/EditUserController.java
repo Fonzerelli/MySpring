@@ -64,41 +64,43 @@ public class EditUserController {
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public ModelAndView saveUser(@ModelAttribute("editedUser") UserForm
                                              userForm, BindingResult result) {
-        userFormValidator.validate(userForm, result);
-        ModelAndView modelAndView = new ModelAndView("EditUserPage");
-        if (result.hasErrors()) {
-            modelAndView.addObject("editedUser", userForm);
-            modelAndView.addObject("roles", userHelper.getAllRoles());
-            return modelAndView;
-        }
-        User user = null;
-        try {
-            user = userDao.findById(userForm.getId());
-        } catch (DaoException e) {
-            LOGGER.error("Can't find user by id", e);
-            return modelAndView;
-        }
-        user.setPassword(HashUtil.getEncryptedText(userForm.getPassword()));
-        user.setEmail(userForm.getEmail());
-        user.setFirstName(userForm.getFirstName());
-        user.setLastName(userForm.getLastName());
-        try {
-            user.setRole(roleDao.findById(userForm.getRoleId()));
-        } catch (DaoException e) {
-            LOGGER.error("Can't find role by id", e);
-        }
-        try {
-            user.setBirthday(UserHelper.DATE_FORMATTER.parse(userForm
-                    .getBirthday()));
-        } catch (ParseException e) {
-            LOGGER.error("Can't parse date", e);
-            return modelAndView;
-        }
-        try {
-            userDao.update(user);
-        } catch (DaoException e) {
-            LOGGER.error("Can't update user", e);
-            return modelAndView;
+        if (userForm != null) {
+            userFormValidator.validate(userForm, result);
+            ModelAndView modelAndView = new ModelAndView("EditUserPage");
+            if (result.hasErrors()) {
+                modelAndView.addObject("editedUser", userForm);
+                modelAndView.addObject("roles", userHelper.getAllRoles());
+                return modelAndView;
+            }
+            User user = null;
+            try {
+                user = userDao.findById(userForm.getId());
+            } catch (DaoException e) {
+                LOGGER.error("Can't find user by id", e);
+                return modelAndView;
+            }
+            user.setPassword(HashUtil.getEncryptedText(userForm.getPassword()));
+            user.setEmail(userForm.getEmail());
+            user.setFirstName(userForm.getFirstName());
+            user.setLastName(userForm.getLastName());
+            try {
+                user.setRole(roleDao.findById(userForm.getRoleId()));
+            } catch (DaoException e) {
+                LOGGER.error("Can't find role by id", e);
+            }
+            try {
+                user.setBirthday(UserHelper.DATE_FORMATTER.parse(userForm
+                        .getBirthday()));
+            } catch (ParseException e) {
+                LOGGER.error("Can't parse date", e);
+                return modelAndView;
+            }
+            try {
+                userDao.update(user);
+            } catch (DaoException e) {
+                LOGGER.error("Can't update user", e);
+                return modelAndView;
+            }
         }
         return new ModelAndView("forward:/editAllUsers");
     }

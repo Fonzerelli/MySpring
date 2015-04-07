@@ -30,8 +30,8 @@ public class LoginController {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private LoginUtil loginUtil;
+//    @Autowired
+//    private LoginUtil loginUtil;
 
     @RequestMapping(value = "/")
     public String getLogin() {
@@ -40,30 +40,29 @@ public class LoginController {
 
     @RequestMapping(value = "/signIn", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam(value = "error", required =
-            false) boolean error, HttpSession session,
+            false) boolean error, HttpServletRequest session,
                                ModelMap model) {
 
-        boolean captchaError = false;
-        if (session.getAttribute("captcha_error") != null) {
-            captchaError = (Boolean) session.getAttribute("captcha_error");
-        }
+//        boolean captchaError = false;
+//        if (session.getAttribute("captcha_error") != null) {
+//            captchaError = (Boolean) session.getAttribute("captcha_error");
+//        }
         if (error) {
-            session.setAttribute("passCaptureFilter", true);
-            loginUtil.incrementLoginCounter();
-            if (captchaError) {
-                model.put("captcha_error", "Captcha is not valid");
-                model.put("error", "");
-            } else {
+//            session.setAttribute("passCaptureFilter", true);
+//            loginUtil.incrementLoginCounter();
+//            if (captchaError) {
+//                model.put("captcha_error", "Captcha is not valid");
+//                model.put("error", "");
+//            } else {
                 model.put("error", "You have entered an invalid username or password!");
-                model.put("captcha_error", "");
-            }
+//                model.put("captcha_error", "");
+//            }
         } else {
             model.put("error", "");
-            model.put("captcha_error", "");
-            loginUtil.resetLoginCounter();
+//            model.put("captcha_error", "");
+//            loginUtil.resetLoginCounter();
         }
-        session.setAttribute("captchaIsNecessary", loginUtil.captchaIsNecessary());
-
+//        session.setAttribute("captchaIsNecessary", loginUtil.captchaIsNecessary());
         return "SignInPage";
     }
 

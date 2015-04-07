@@ -33,9 +33,7 @@ public class DeleteUserController {
             }
         } catch (DaoException e) {
             LOGGER.error("Can't remove user", e);
-            throw new RuntimeException(e);
         }
-
         return "forward:/editAllUsers";
     }
 }

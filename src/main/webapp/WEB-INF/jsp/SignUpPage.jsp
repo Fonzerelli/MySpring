@@ -97,7 +97,7 @@
                 </td>
             </tr>
             <%
-                ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LfxnAQTAAAAACfEPgLLgcbUl2L_JoGeEyGO_1OZ", "6LfxnAQTAAAAAG4fAaHObKANQlC2ahQTJxlNCDiC", false);
+                ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LcY9gQTAAAAADBwkIV4tpdtHfhnQWahN2dCFU4r", "6LcY9gQTAAAAABhSm-ktg0sdm0Dqcv4aZDCQLRJD", false);
                 out.print(c.createRecaptchaHtml(null, null));
             %>
             <h3><c:out value="${captchaError}"/></h3>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 
@@ -56,7 +57,7 @@ public class SignUpController {
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     public ModelAndView registerUser(
             @ModelAttribute("newUser") UserForm userForm,
-            HttpSession session,
+            HttpSession session, HttpServletRequest req,
             BindingResult result) {
         userFormValidator.validate(userForm, result);
         ModelAndView modelAndView = new ModelAndView("SignUpPage");
@@ -68,9 +69,9 @@ public class SignUpController {
         ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
         reCaptcha.setPrivateKey(privateKey);
         try {
-            String remoteAddr = (String) session.getAttribute("remoteAddr");
-            String challenge = (String) session.getAttribute("recaptcha_challenge_field");
-            String response = (String) session.getAttribute("recaptcha_response_field");
+            String remoteAddr = req.getRemoteAddr();
+            String challenge = req.getParameter("recaptcha_challenge_field");
+            String response = req.getParameter("recaptcha_response_field");
 
             ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(
                     remoteAddr,

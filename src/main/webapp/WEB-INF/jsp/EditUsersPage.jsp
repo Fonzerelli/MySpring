@@ -15,6 +15,8 @@
 <jsp:include page="AdminHeaderPage.jsp" />
 
 <a href="<c:url value="/getAddUserPage"/>">Add new user</a>
+<br/>
+<a href="<c:url value="/getLoginAuditPage"/>">Login Audit</a>
 <br/><br/>
 <custom:EditUsersTag usersList="${usersList}"/>
 </body>
