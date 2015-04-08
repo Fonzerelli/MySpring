@@ -34,19 +34,19 @@
         <!--<custom-filter ref="captchaVerifierFilter" after="FORM_LOGIN_FILTER"/>-->
     </http>
 
-    <beans:bean class="com.nixsolutions.ivashyn.web.security.AuthenticationHandler" id="authenticationHandler">
+    <beans:bean class="com.myspring.ivashyn.web.security.AuthenticationHandler" id="authenticationHandler">
         <beans:property name="successURL" value="./switch"/>
     </beans:bean>
 
-    <beans:bean class="com.nixsolutions.ivashyn.web.security.LogoutHandler" id="logoutHandler">
+    <beans:bean class="com.myspring.ivashyn.web.security.LogoutHandler" id="logoutHandler">
         <beans:property name="successURL" value="./signIn"/>
     </beans:bean>
     <!-- For capturing CAPTCHA fields -->
-    <!--<beans:bean id="captchaCaptureFilter" class="com.nixsolutions.ivashyn.web.filter.CaptchaCaptureFilter"/>-->
+    <!--<beans:bean id="captchaCaptureFilter" class="com.myspringshyn.web.filter.CaptchaCaptureFilter"/>-->
 
     <!-- For verifying CAPTCHA fields -->
     <!-- Private key is assigned by the reCATPCHA service -->
-    <!--<beans:bean id="captchaVerifierFilter" class="com.nixsolutions.ivashyn.web.filter.CaptchaVerifierFilter">-->
+    <!--<beans:bean id="captchaVerifierFilter" class="com.myspringshyn.web.filter.CaptchaVerifierFilter">-->
         <!--<beans:property name="useProxy" value="false"/>-->
         <!--<beans:property name="proxyPort" value=""/>-->
         <!--<beans:property name="proxyHost" value=""/>-->
@@ -79,6 +79,6 @@
         <!--<user name="user" password="user" authorities="ROLE_USER" />-->
     <!--</user-service>-->
 
-    <beans:bean id="customUserDetailsService" class="com.nixsolutions.ivashyn.util.CustomUserDetailsService"/>
+    <beans:bean id="customUserDetailsService" class="com.myspring.ivashyn.util.CustomUserDetailsService"/>
 
 </beans:beans>

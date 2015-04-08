@@ -14,7 +14,7 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="com.nixsolutions.ivashyn"/>
+    <context:component-scan base-package="com.myspring.ivashyn"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
@@ -25,7 +25,7 @@
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="testDataSource" />
         <property name="packagesToScan"
-                  value="com.nixsolutions.ivashyn" />
+                  value="com.myspring.ivashyn" />
         <property name="configLocation">
             <value>classpath:test-hibernate.cfg.xml</value>
         </property>

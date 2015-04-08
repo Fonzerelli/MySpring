@@ -10,7 +10,7 @@
 
     <tag>
         <name>EditUsersTag</name>
-        <tag-class>com.nixsolutions.ivashyn.web.tag.EditUsersTag</tag-class>
+        <tag-class>com.myspring.ivashyn.web.tag.EditUsersTag</tag-class>
         <attribute>
             <name>usersList</name>
             <required>true</required>

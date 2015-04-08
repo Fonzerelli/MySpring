@@ -17,7 +17,7 @@
 
     <filter>
         <filter-name>noCacheFilter</filter-name>
-        <filter-class>com.nixsolutions.ivashyn.web.filter.NoCacheFilter</filter-class>
+        <filter-class>com.myspring.ivashyn.web.filter.NoCacheFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -40,7 +40,7 @@
 
 
     <listener>
-        <listener-class>com.nixsolutions.ivashyn.web.security.UserAuditListener</listener-class>
+        <listener-class>com.myspring.ivashyn.web.security.UserAuditListener</listener-class>
     </listener>
 
     <servlet>
