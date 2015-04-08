@@ -2,6 +2,7 @@
 *.jar
 *.war
 *.ear
+mail.properties
 target/
 
 #Idea files #
