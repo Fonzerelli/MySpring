@@ -13,6 +13,8 @@ import net.tanesha.recaptcha.ReCaptchaResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,6 +46,10 @@ public class SignUpController {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private MailSender mailSender;
+
     private String privateKey;
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
@@ -92,7 +98,7 @@ public class SignUpController {
             modelAndView.addObject("captchaError", "Error validating captcha");
             return modelAndView;
         }
-        User user = new User();
+        final User user = new User();
         user.setLogin(userForm.getLogin());
         user.setPassword(HashUtil.getEncryptedText(userForm.getPassword()));
         user.setEmail(userForm.getEmail());
@@ -116,6 +122,23 @@ public class SignUpController {
             LOGGER.error("Can't update user", e);
             return modelAndView;
         }
+        try {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    SimpleMailMessage message = new SimpleMailMessage();
+                    message.setTo(user.getEmail());
+                    message.setSubject("Signed up successfully");
+                    message.setText("Dear " + user.getLogin() + ", thank you for registration!");
+                    mailSender.send(message);
+                }
+            });
+
+            thread.start();
+        } catch (Exception e) {
+            LOGGER.error("Can't send email to " + user.getEmail());
+        }
+
         return new ModelAndView("redirect:/signIn");
     }
 

@@ -36,7 +36,10 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <context:property-placeholder location="classpath:db.properties,classpath:recaptcha.properties"/>
+    <context:property-placeholder
+            location="classpath:db.properties,
+            classpath:recaptcha.properties,
+            classpath:mail.properties"/>
 
    <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -58,6 +61,21 @@
     <bean id="datastore" factory-bean="morphia" factory-method="createDatastore">
         <constructor-arg ref="mongo"/>
         <constructor-arg value="my_spring"/>
+    </bean>
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${SMTP_HOST}" />
+        <property name="port" value="${SMTP_PORT}" />
+        <property name="username" value="${USER_NAME}" />
+        <property name="password" value="${PASSWORD}" />
+
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
     </bean>
 
     <!--<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">-->
