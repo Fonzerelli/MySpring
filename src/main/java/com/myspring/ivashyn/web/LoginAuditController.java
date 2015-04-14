@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * Created by Dmytro Ivashyn

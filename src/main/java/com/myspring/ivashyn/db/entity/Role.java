@@ -1,6 +1,7 @@
 package com.myspring.ivashyn.db.entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by: Dima Ivashyn
@@ -9,6 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ROLE")
+@XmlRootElement(name="role")
 public class Role extends BaseEntity {
 
     @Column(name = "NAME")

@@ -10,15 +10,15 @@
     <http auto-config="true" use-expressions="true" access-denied-page="/denied">
         <intercept-url pattern="/signIn" access="permitAll"/>
         <intercept-url pattern="/signUp" access="permitAll"/>
-        <intercept-url pattern="/switch" access="hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/getUserHome" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/editAllUsers" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/getLoginAuditPage" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/deleteUser" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/getAddUserPage" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/addUser" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/editUser" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/saveUser" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/switch" access="hasRole('User') OR hasRole('Admin')"/>
+        <intercept-url pattern="/getUserHome" access="hasRole('User')"/>
+        <intercept-url pattern="/editAllUsers" access="hasRole('Admin')"/>
+        <intercept-url pattern="/getLoginAuditPage" access="hasRole('Admin')"/>
+        <intercept-url pattern="/deleteUser" access="hasRole('Admin')"/>
+        <intercept-url pattern="/getAddUserPage" access="hasRole('Admin')"/>
+        <intercept-url pattern="/addUser" access="hasRole('Admin')"/>
+        <intercept-url pattern="/editUser" access="hasRole('Admin')"/>
+        <intercept-url pattern="/saveUser" access="hasRole('Admin')"/>
 
         <form-login
                 login-page="/signIn"

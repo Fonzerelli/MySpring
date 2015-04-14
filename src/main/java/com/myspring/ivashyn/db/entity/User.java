@@ -3,6 +3,7 @@ package com.myspring.ivashyn.db.entity;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 /**
@@ -12,6 +13,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "USER")
+@XmlRootElement(name="user")
 public class User extends BaseEntity {
 
     @Column(name = "LOGIN")

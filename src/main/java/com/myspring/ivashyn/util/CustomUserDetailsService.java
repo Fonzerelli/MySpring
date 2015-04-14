@@ -1,6 +1,7 @@
 package com.myspring.ivashyn.util;
 
 import com.myspring.ivashyn.db.dao.UserDao;
+import com.myspring.ivashyn.db.entity.Role;
 import com.myspring.ivashyn.db.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,14 +38,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 
             User dbUser = userDao.findByLogin(username);
 
-            user =  new org.springframework.security.core.userdetails.User(
+            user = new org.springframework.security.core.userdetails.User(
                     dbUser.getLogin(),
                     dbUser.getPassword(),
                     true,
                     true,
                     true,
                     true,
-                    getAuthorities(dbUser.getRole().getId()) );
+                    getAuthorities(dbUser.getRole()));
 
         } catch (Exception e) {
             LOGGER.error("Error in retrieving user", e);
@@ -53,29 +54,27 @@ public class CustomUserDetailsService implements UserDetailsService {
         return user;
     }
 
-    public Collection<? extends GrantedAuthority> getAuthorities(Long role) {
-        List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(role));
+    public Collection<? extends GrantedAuthority> getAuthorities(Role role) {
+        List<GrantedAuthority> authList = getGrantedAuthorities(role);
         return authList;
     }
 
-    public List<String> getRoles(Long role) {
-        List<String> roles = new ArrayList<String>();
+//    public List<String> getRoles(Long role) {
+//        List<String> roles = new ArrayList<String>();
+//
+//        if (role.intValue() == 1) {
+//            roles.add("ROLE_ADMIN");
+//
+//        } else if (role.intValue() == 2) {
+//            roles.add("ROLE_USER");
+//        }
+//
+//        return roles;
+//    }
 
-        if (role.intValue() == 1) {
-            roles.add("ROLE_ADMIN");
-
-        } else if (role.intValue() == 2) {
-            roles.add("ROLE_USER");
-        }
-
-        return roles;
-    }
-
-    public static List<GrantedAuthority> getGrantedAuthorities(List<String> roles) {
+    public static List<GrantedAuthority> getGrantedAuthorities(Role role) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        for (String role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role));
-        }
+        authorities.add(new SimpleGrantedAuthority(role.getName()));
         return authorities;
     }
 }
