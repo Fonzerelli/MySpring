@@ -23,7 +23,7 @@ public class UserFormValidator implements Validator {
     }
 
     @Override
-    public void validate(Object o, Errors errors) {
+    public synchronized void validate(Object o, Errors errors) {
         UserForm userForm = (UserForm) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "login" +

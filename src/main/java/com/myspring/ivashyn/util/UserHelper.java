@@ -34,18 +34,6 @@ public class UserHelper {
     @Autowired
     private RoleDao roleDao;
 
-    public HttpServletRequest saveDataOnError(HttpServletRequest req) {
-        req.setAttribute("login", req.getParameter("login"));
-        req.setAttribute("password", req.getParameter("password"));
-        req.setAttribute("email", req.getParameter("email"));
-        req.setAttribute("firstName", req.getParameter("firstName"));
-        req.setAttribute("lastName", req.getParameter("lastName"));
-        req.setAttribute("birthday", req.getParameter("birthday"));
-        req.setAttribute("role", req.getParameter("roleSelect"));
-        req.setAttribute("roleNames", getAllRoles());
-        return req;
-    }
-
     public List<Role> getAllRoles() {
         List<Role> roles = null;
         try {
@@ -108,7 +96,7 @@ public class UserHelper {
         return email.matches("[A-Za-z0-9._%+-][A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
     }
 
-    public boolean emailIsUniqueOnEdit(String email, Long id) {
+    public synchronized boolean emailIsUniqueOnEdit(String email, Long id) {
         User user = null;
         try {
             user = userDao.findById(id);
