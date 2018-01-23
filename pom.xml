@@ -133,7 +133,7 @@
         <dependency>
             <groupId>com.google.code.morphia</groupId>
             <artifactId>morphia</artifactId>
-            <version>0.99</version>
+            <version>RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.mongodb</groupId>
