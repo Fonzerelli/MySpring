@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class HibernateGenericDaoImpl<T extends BaseEntity> implements GenericDao<T> {
+public abstract class HibernateGenericDaoImpl<T extends BaseEntity> implements GenericDao<T> {
 
     @Autowired
     protected SessionFactory sessionFactory;
