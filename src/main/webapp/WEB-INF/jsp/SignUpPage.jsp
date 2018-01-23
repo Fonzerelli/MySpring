@@ -1,5 +1,5 @@
 <%--
-  Created by ickis
+  Created by ivashyn
   Date: 3/30/15
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
- * Created by ickis on 4/14/15.
+ * Created by ivashyn on 4/14/15.
  */
 
 @XmlRootElement(name="roles")
