@@ -66,8 +66,8 @@
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="${SMTP_HOST}" />
         <property name="port" value="${SMTP_PORT}" />
-        <property name="username" value="${USER_NAME}" />
-        <property name="password" value="${PASSWORD}" />
+        <property name="username" value="${SMTP_USER_NAME}" />
+        <property name="password" value="${SMTP_PASSWORD}" />
 
         <property name="javaMailProperties">
             <props>
